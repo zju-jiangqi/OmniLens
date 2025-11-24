@@ -66,17 +66,23 @@ A flexible framework that serves **any optical lens aberration correction**. Whe
 ## <a name="results"></a>:chart_with_upwards_trend: Results
 
 ### AODLib-EAOD v.s. other LensLibs
-<img src=picture/table1.jpg style="zoom:60%;">
-<img src=picture/figure5.jpg>
+<p align="center">
+  <img src="picture/table1.jpg" width="48%" style="vertical-align:top; margin-right:1%;">
+  <img src="picture/figure5.jpg" width="48%" style="vertical-align:top;">
+</p>
  
 
 ### Quantitative Evaluation of the OmniLens Framework
-
-<img src=picture/table2.jpg style="zoom:60%;">
+<p align="center">
+<img src="picture/table2.jpg" width="50%">
+</p>
 
 ### Visual Results on Real-World Dataset
 
-<img src=picture/figure7.jpg>
+<p align="center">
+<img src="picture/figure7.jpg" width="60%">
+</p>
+
 <img src=picture/figure8.jpg>
 
 <!-- </details> -->
@@ -145,7 +151,7 @@ Prepare your own lens‑specific training paired data under a specific lens.
 Please modify the paths to training image pairs and your target specific lens test data in `options/train/specific/train_SwinIR_Specific.yml` or `options/train/specific/train_FemaSR_Specific.yml`
 
 #### Step2: Prepare the Pre-Trained Universal Model
-You can download our pre-trained SwinIR and FeMaSR weights from our [Huggingface]() and place them in the `pretrain/` folder.
+You can download our pre-trained SwinIR and FeMaSR weights from our [Huggingface](https://huggingface.co/datasets/Strange97/OmniLens-PretrainedModel) and place them in the `pretrain/` folder.
 Please modify the paths to the pretrained model in `options/train/specific/train_SwinIR_Specific.yml` or `options/train/specific/train_FemaSR_Specific.yml`
 
 #### Step3: Finetuning a Specific Model
@@ -170,7 +176,7 @@ Prepare your own lens‑specific training data: several real-world images captur
 Please modify the data paths in `options/train/uda/train_SwinIR_DA.yml` or `options/train/uda/train_FeMaFA_DA.yml`
 
 #### Step2: Prepare the Pre-Trained Universal Model
-You can download our pre-trained SwinIR and FeMaSR weights from our [Huggingface]() and place them in the `pretrain/` folder.
+You can download our pre-trained SwinIR and FeMaSR weights from our [Huggingface](https://huggingface.co/datasets/Strange97/OmniLens-PretrainedModel) and place them in the `pretrain/` folder.
 Please modify the paths to the pretrained model in `options/train/uda/train_SwinIR_DA.yml` or `options/train/uda/train_FeMaFA_DA.yml`
 
 
@@ -191,7 +197,7 @@ PYTHONPATH="./:${PYTHONPATH}" CUDA_VISIBLE_DEVICES=0,1 python basicsr/train.py -
 Please modify the data paths in `options/test/test_SwinIR.yml` or `options/test/test_FeMaSR.yml`
 
 #### Step2: Prepare the Pre-Trained Universal Model
-You can download our pre-trained SwinIR and FeMaSR weights from our [Huggingface]() and place them in the `pretrain/` folder.
+You can download our pre-trained SwinIR and FeMaSR weights from our [Huggingface](https://huggingface.co/datasets/Strange97/OmniLens-PretrainedModel) and place them in the `pretrain/` folder.
 Please modify the paths to the pretrained model in `options/test/test_SwinIR.yml` or `options/test/test_FeMaSR.yml`
 
 #### Step3: Zero-Shot Inference
@@ -206,7 +212,9 @@ run:
 PYTHONPATH="./:${PYTHONPATH}" CUDA_VISIBLE_DEVICES=0,1 python basicsr/train.py -opt options/test/test_FeMaSR.yml --auto_resume
 ```
 
-
+## :smile: Acknowledgement
+This project is built based on the excellent [BasicSR](https://github.com/xinntao/BasicSR) project.
+We further recommend using [DeepLens](https://github.com/singer-yang/DeepLens) to simulate optical degradations using our released PSFs and lens data.
 
 ## :smiley: Citation
 
