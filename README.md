@@ -129,6 +129,7 @@ Following the instructions in [LensLib Data](#lenslib_data) to prepare AODLib-EA
 
 #### Step2: Training a Universal Model
 We use SwinIR and FeMaSR as examples. We also recommend using any other architecture you prefer to train your universal model with our data.
+
 **For SwinIR**
 run:
 ```bash
@@ -209,7 +210,7 @@ PYTHONPATH="./:${PYTHONPATH}" CUDA_VISIBLE_DEVICES=0 python basicsr/test.py -opt
 **For FeMaSR**
 run:
 ```bash
-PYTHONPATH="./:${PYTHONPATH}" CUDA_VISIBLE_DEVICES=0,1 python basicsr/train.py -opt options/test/test_FeMaSR.yml --auto_resume
+PYTHONPATH="./:${PYTHONPATH}" CUDA_VISIBLE_DEVICES=0,1 python basicsr/test.py -opt options/test/test_FeMaSR.yml --auto_resume
 ```
 
 ## :smile: Acknowledgement
