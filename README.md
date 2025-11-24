@@ -125,7 +125,7 @@ The downloaded AODLib-EAOD data contains 3 parts. Here are the descriptions:
 
 
 #### Step1: Prepare LensLib Data
-Following the instructions in [LensLib Data]("lenslib_data") to prepare AODLib-EAOD. Please modify the paths to training image pairs (-Imgs) and your target specific lens test data in `options/train/pretrain/train_SwinIR_PSNR.yml` or `options/train/pretrain/train_FeMaSR_lib.yml`
+Following the instructions in [LensLib Data](#lenslib_data) to prepare AODLib-EAOD. Please modify the paths to training image pairs (-Imgs) and your target specific lens test data in `options/train/pretrain/train_SwinIR_PSNR.yml` or `options/train/pretrain/train_FeMaSR_lib.yml`
 
 #### Step2: Training a Universal Model
 We use SwinIR and FeMaSR as examples. We also recommend using any other architecture you prefer to train your universal model with our data.
@@ -169,7 +169,7 @@ PYTHONPATH="./:${PYTHONPATH}" CUDA_VISIBLE_DEVICES=0 python basicsr/train.py -op
 ### <a name="DATraining"></a> Lens-Specific DA-Training
 
 #### Step1: Prepare LensLib Data and the Unpaired Data
-Following the instructions in [LensLib Data]("lenslib_data") to prepare AODLib-EAOD （**only DA-Training needed**). 
+Following the instructions in [LensLib Data](#lenslib_data) to prepare AODLib-EAOD （**only DA-Training needed**). 
 
 Prepare your own lens‑specific training data: several real-world images captured with the target lens (for DA-Training).
 
