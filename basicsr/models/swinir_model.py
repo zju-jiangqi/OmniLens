@@ -2,7 +2,7 @@ import torch
 from torch.nn import functional as F
 
 from basicsr.utils.registry import MODEL_REGISTRY
-from .sr_model import SRModel, SRModel_psfmap
+from .sr_model import SRModel
 from collections import OrderedDict
 
 @MODEL_REGISTRY.register()

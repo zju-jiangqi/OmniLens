@@ -1,8 +1,9 @@
 addict
 future
 lmdb
-numpy
-opencv-python
+numpy<2.0
+opencv-python<4.10
+opencv-python-headless<4.10
 Pillow
 pyyaml
 requests
