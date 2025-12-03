@@ -53,7 +53,7 @@ A flexible framework that serves **any optical lens aberration correction**. Whe
 
 ### What can OmniLens do?
 * **For users without optical expertise:**
-    OmniLens provides pre-trained models, and direct zero-shot [inference](#inference) can address many lens aberration degradation cases. In addition, you can simply capture 25 to 50 images with the target system and use our framework’s [DA-Training](#DA_Training) mode to quickly adapt the model to your optical system.
+    OmniLens provides pre-trained models, and direct zero-shot [inference](#inference) can address many lens aberration degradation cases. In addition, you can simply capture 25 to 50 images with the target system and use our framework’s [DA-Training](#DATraining) mode to quickly adapt the model to your optical system.
 * **For users targeting at lens-specific aberration correction (non-blind):**
     OmniLens serves as a strong pre-training foundation that boosts lens-specific models while markedly reducing specific data needs and training time. You can load the [OmniLens pre-trained weights](#finetune) and finetune on your own lens data, or use our released dataset to [train a pre-training model](#pretrain) that matches your chosen architecture.
 * **For researchers of blind aberration correction:**
@@ -66,17 +66,23 @@ A flexible framework that serves **any optical lens aberration correction**. Whe
 ## <a name="results"></a>:chart_with_upwards_trend: Results
 
 ### AODLib-EAOD v.s. other LensLibs
-<img src=picture/table1.jpg>
-<img src=picture/figure5.jpg>
+<p align="center">
+  <img src="picture/table1.jpg" width="48%" style="vertical-align:top; margin-right:1%;">
+  <img src="picture/figure5.jpg" width="48%" style="vertical-align:top;">
+</p>
  
 
 ### Quantitative Evaluation of the OmniLens Framework
-
-<img src=picture/table2.jpg>
+<p align="center">
+<img src="picture/table2.jpg" width="50%">
+</p>
 
 ### Visual Results on Real-World Dataset
 
-<img src=picture/figure7.jpg>
+<p align="center">
+<img src="picture/figure7.jpg" width="60%">
+</p>
+
 <img src=picture/figure8.jpg>
 
 <!-- </details> -->
@@ -119,10 +125,11 @@ The downloaded AODLib-EAOD data contains 3 parts. Here are the descriptions:
 
 
 #### Step1: Prepare LensLib Data
-Following the instructions in [LensLib Data]("lenslib_data") to prepare AODLib-EAOD. Please modify the paths to training image pairs (-Imgs) and your target specific lens test data in `options/train/pretrain/train_SwinIR_PSNR.yml` or `options/train/pretrain/train_FeMaSR_lib.yml`
+Following the instructions in [LensLib Data](#lenslib_data) to prepare AODLib-EAOD. Please modify the paths to training image pairs (-Imgs) and your target specific lens test data in `options/train/pretrain/train_SwinIR_PSNR.yml` or `options/train/pretrain/train_FeMaSR_lib.yml`
 
 #### Step2: Training a Universal Model
 We use SwinIR and FeMaSR as examples. We also recommend using any other architecture you prefer to train your universal model with our data.
+
 **For SwinIR**
 run:
 ```bash
@@ -134,9 +141,9 @@ run:
 PYTHONPATH="./:${PYTHONPATH}" CUDA_VISIBLE_DEVICES=0 python basicsr/train.py -opt options/train/pretrain/train_FeMaSR_lib.yml --auto_resume
 ```
 
-### <a name="finetune"></a> If you want to finetune a pre-trained universal model for a specific lens or perform unsupervised finetuning using our DA pipeline-Finetuning and DA Phase
+### If you want to finetune a pre-trained universal model for a specific lens or perform unsupervised finetuning using our DA pipeline-Finetuning and DA Phase
 
-### Lens-Specific Finetuning
+### <a name="finetune"></a> Lens-Specific Finetuning
 
 #### Step1: Prepare Your Specific Data
 
@@ -145,7 +152,7 @@ Prepare your own lens‑specific training paired data under a specific lens.
 Please modify the paths to training image pairs and your target specific lens test data in `options/train/specific/train_SwinIR_Specific.yml` or `options/train/specific/train_FemaSR_Specific.yml`
 
 #### Step2: Prepare the Pre-Trained Universal Model
-You can download our pre-trained SwinIR and FeMaSR weights from our [Huggingface]() and place them in the `pretrain/` folder.
+You can download our pre-trained SwinIR and FeMaSR weights from our [Huggingface](https://huggingface.co/datasets/Strange97/OmniLens-PretrainedModel) and place them in the `pretrain/` folder.
 Please modify the paths to the pretrained model in `options/train/specific/train_SwinIR_Specific.yml` or `options/train/specific/train_FemaSR_Specific.yml`
 
 #### Step3: Finetuning a Specific Model
@@ -160,17 +167,17 @@ run:
 PYTHONPATH="./:${PYTHONPATH}" CUDA_VISIBLE_DEVICES=0 python basicsr/train.py -opt options/train/specific/train_FemaSR_Specific.yml --auto_resume
 ```
 
-### Lens-Specific DA-Training
+### <a name="DATraining"></a> Lens-Specific DA-Training
 
 #### Step1: Prepare LensLib Data and the Unpaired Data
-Following the instructions in [LensLib Data]("lenslib_data") to prepare AODLib-EAOD （**only DA-Training needed**). 
+Following the instructions in [LensLib Data](#lenslib_data) to prepare AODLib-EAOD （**only DA-Training needed**). 
 
 Prepare your own lens‑specific training data: several real-world images captured with the target lens (for DA-Training).
 
 Please modify the data paths in `options/train/uda/train_SwinIR_DA.yml` or `options/train/uda/train_FeMaFA_DA.yml`
 
 #### Step2: Prepare the Pre-Trained Universal Model
-You can download our pre-trained SwinIR and FeMaSR weights from our [Huggingface]() and place them in the `pretrain/` folder.
+You can download our pre-trained SwinIR and FeMaSR weights from our [Huggingface](https://huggingface.co/datasets/Strange97/OmniLens-PretrainedModel) and place them in the `pretrain/` folder.
 Please modify the paths to the pretrained model in `options/train/uda/train_SwinIR_DA.yml` or `options/train/uda/train_FeMaFA_DA.yml`
 
 
@@ -191,7 +198,7 @@ PYTHONPATH="./:${PYTHONPATH}" CUDA_VISIBLE_DEVICES=0,1 python basicsr/train.py -
 Please modify the data paths in `options/test/test_SwinIR.yml` or `options/test/test_FeMaSR.yml`
 
 #### Step2: Prepare the Pre-Trained Universal Model
-You can download our pre-trained SwinIR and FeMaSR weights from our [Huggingface]() and place them in the `pretrain/` folder.
+You can download our pre-trained SwinIR and FeMaSR weights from our [Huggingface](https://huggingface.co/datasets/Strange97/OmniLens-PretrainedModel) and place them in the `pretrain/` folder.
 Please modify the paths to the pretrained model in `options/test/test_SwinIR.yml` or `options/test/test_FeMaSR.yml`
 
 #### Step3: Zero-Shot Inference
@@ -203,10 +210,12 @@ PYTHONPATH="./:${PYTHONPATH}" CUDA_VISIBLE_DEVICES=0 python basicsr/test.py -opt
 **For FeMaSR**
 run:
 ```bash
-PYTHONPATH="./:${PYTHONPATH}" CUDA_VISIBLE_DEVICES=0,1 python basicsr/train.py -opt options/test/test_FeMaSR.yml --auto_resume
+PYTHONPATH="./:${PYTHONPATH}" CUDA_VISIBLE_DEVICES=0 python basicsr/test.py -opt options/test/test_FeMaSR.yml --auto_resume
 ```
 
-
+## :smile: Acknowledgement
+This project is built based on the excellent [BasicSR](https://github.com/xinntao/BasicSR) project.
+We further recommend using [DeepLens](https://github.com/singer-yang/DeepLens) to simulate optical degradations using our released PSFs and lens data.
 
 ## :smiley: Citation
 
